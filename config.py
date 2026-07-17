@@ -6,7 +6,7 @@ Loads environment variables and provides a centralized configuration object.
 import os
 from dotenv import load_dotenv
 from dataclasses import dataclass, field
-from typing import list, dict, Optional
+from typing import Optional
 
 # Load environment variables from .env file
 load_dotenv()
@@ -43,7 +43,7 @@ class YoutubeConfig:
     upload_category_id: str = field(default_factory=lambda: os.getenv("YOUTUBE_UPLOAD_CATEGORY_ID", "22"))
     upload_privacy_status: str = field(default_factory=lambda: os.getenv("YOUTUBE_UPLOAD_PRIVACY_STATUS", "private"))
     upload_self_declared_made_for_kids: bool = field(default_factory=lambda: os.getenv("YOUTUBE_UPLOAD_SELF_DECLARED_MADE_FOR_KIDS", "False").lower() == "true")
-    scopes: List[str] = field(default_factory=lambda: [
+    scopes: list[str] = field(default_factory=lambda: [
         'https://www.googleapis.com/auth/youtube.upload',
         'https://www.googleapis.com/auth/youtube.readonly'
     ])
