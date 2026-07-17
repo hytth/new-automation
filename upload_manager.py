@@ -7,7 +7,7 @@ import os
 import time
 import logging
 from datetime import datetime
-from typing import Dict, Any, Optional
+from typing import Any, Optional
 from google.oauth2 import service_account
 import pytz
 
@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 class UploadManager:
     def __init__(self, sheet_manager: GoogleSheetManager, drive_manager: DriveManager, 
-                 yt_managers: Dict, fb_managers: Dict, state_manager: StateManager, 
+                 yt_managers: dict, fb_managers: dict, state_manager: StateManager, 
                  notification: NotificationService):
         self.sheet = sheet_manager
         self.drive = drive_manager
@@ -32,7 +32,7 @@ class UploadManager:
         self.state = state_manager
         self.notifier = notification
 
-    def _get_time_slots(self, row_data: Dict, prefix: str) -> list:
+    def _get_time_slots(self, row_data: dict, prefix: str) -> list:
         """Dynamically extracts all time slots (Time_1, Time_2... Time_N) from sheet row."""
         times = []
         for key, val in row_data.items():
@@ -56,7 +56,7 @@ class UploadManager:
                 return True
         return False
 
-    def _find_matching_file(self, folder_id: str, current_index: int, is_image: bool = False) -> Optional[Dict]:
+    def _find_matching_file(self, folder_id: str, current_index: int, is_image: bool = False) -> Optional[dict]:
         """Finds the file to upload based on current index."""
         ext = "jpg" if is_image else "mp4"
         mime_type = "image/jpeg" if is_image else "video/mp4"
@@ -96,7 +96,7 @@ class UploadManager:
             if img_times and self._is_time_to_upload(img_times):
                 self._process_image_distribution(schedule_data)
 
-    def _process_video_upload(self, channel_name: str, row: Dict, platform: str):
+    def _process_video_upload(self, channel_name: str, row: dict, platform: str):
         """Handles downloading and uploading a single video for a specific platform."""
         logger.info(f"Time matched for {channel_name} on {platform}.")
         
