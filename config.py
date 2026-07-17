@@ -6,7 +6,7 @@ Loads environment variables and provides a centralized configuration object.
 import os
 from dotenv import load_dotenv
 from dataclasses import dataclass, field
-from typing import List, Dict, Optional
+from typing import list, dict, Optional
 
 # Load environment variables from .env file
 load_dotenv()
