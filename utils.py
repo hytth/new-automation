@@ -7,7 +7,7 @@ import time
 import logging
 import functools
 import requests
-from typing import Callable, Any, Optional, list, dict
+from typing import Callable, Any, Optional
 from datetime import datetime
 
 # Configure logging
@@ -62,7 +62,7 @@ def read_file_contents(file_path: str, encoding: str = 'utf-8') -> str:
     with open(file_path, 'r', encoding=encoding) as f:
         return f.read().strip()
 
-def parse_facebook_api_file(file_path: str) -> Dict[str, Dict[str, str]]:
+def parse_facebook_api_file(file_path: str) -> dict[str, dict[str, str]]:
     """
     Parses the Facebook API text file into a structured dictionary.
     Expected format per block:
