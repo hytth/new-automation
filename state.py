@@ -7,7 +7,7 @@ Ensures automation can resume exactly where it left off after a restart.
 import os
 import json
 import logging
-from typing import Dict, Any, Optional
+from typing import Any, Optional
 from datetime import datetime
 
 logger = logging.getLogger(__name__)
@@ -20,9 +20,9 @@ class StateManager:
     
     def __init__(self, state_file_path: str):
         self.state_file_path = state_file_path
-        self.state_data: Dict[str, Any] = self._load_state()
+        self.state_data: dict[str, Any] = self._load_state()
 
-    def _load_state(self) -> Dict[str, Any]:
+    def _load_state(self) -> dict[str, Any]:
         """Loads state from the JSON file, or returns a fresh state if it doesn't exist."""
         if os.path.exists(self.state_file_path):
             try:
@@ -54,7 +54,7 @@ class StateManager:
             logger.error(f"Failed to save state: {str(e)}")
             return False
 
-    def get_channel_state(self, channel_name: str) -> Dict[str, Any]:
+    def get_channel_state(self, channel_name: str) -> dict[str, Any]:
         """
         Retrieves the state for a specific channel.
         Initializes default values if the channel doesn't exist in state yet.
@@ -104,7 +104,7 @@ class StateManager:
         mode_str = "REPEAT" if is_repeating else "NEW CONTENT"
         logger.info(f"Global Image state switched to {mode_str} mode. Repeat Pos: {repeat_position}")
 
-    def get_image_state(self) -> Dict[str, Any]:
+    def get_image_state(self) -> dict[str, Any]:
         """Returns the global image distribution state."""
         return self.state_data["global_image_state"]
 
