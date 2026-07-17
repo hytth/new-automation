@@ -6,7 +6,7 @@ Handles downloading files, listing folders, and deleting source files.
 import os
 import logging
 import requests
-from typing import List, Optional
+from typing import Optional
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from google.oauth2.credentials import Credentials
@@ -19,7 +19,7 @@ class DriveManager:
         self.service = build('drive', 'v3', credentials=creds)
         self.downloaded_file_path = ""
 
-    def list_files_in_folder(self, folder_id: str, file_extension: str = "mp4") -> List[Dict]:
+    def list_files_in_folder(self, folder_id: str, file_extension: str = "mp4") -> list[dict]:
         """Lists all files of a specific extension in a Google Drive folder."""
         query = f"'{folder_id}' in parents and mimeType contains '{file_extension}' and trashed=false"
         fields = "nextPageToken, files(id, name)"
