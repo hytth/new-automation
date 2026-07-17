@@ -5,7 +5,7 @@ Reads Schedule & History tabs, updates indexes and records.
 
 import pickle
 import logging
-from typing import Dict, List, Any, Optional
+from typing import Any, Optional
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from config import get_config
@@ -61,7 +61,7 @@ class GoogleSheetManager:
             logger.error(f"Failed to load Google Sheet: {str(e)}")
             raise
 
-    def get_channel_schedule(self, channel_name: str) -> Optional[Dict[str, Any]]:
+    def get_channel_schedule(self, channel_name: str) -> Optional[dict[str, Any]]:
         """Finds the specific row data for a channel by name."""
         name_lower = channel_name.lower()
         for row in self.schedule_data:
@@ -69,7 +69,7 @@ class GoogleSheetManager:
                 return row
         return None
 
-    def _find_column_index(self, headers: List[str], target: str) -> int:
+    def _find_column_index(self, headers: list[str], target: str) -> int:
         """Finds the index of a column header, case-insensitive."""
         for i, h in enumerate(headers):
             if target.lower() in h.lower():
