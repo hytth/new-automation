@@ -1,0 +1,29 @@
+# Credentials & Secrets
+*.json
+!package.json
+*.pickle
+*.txt
+!.env.example
+!requirements.txt
+!README.md
+!Sheet Link
+
+# Environment
+.env
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# State
+state.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
