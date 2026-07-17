@@ -7,7 +7,7 @@ import time
 import logging
 import functools
 import requests
-from typing import Callable, Any, Optional, List, Dict
+from typing import Callable, Any, Optional, list, dict
 from datetime import datetime
 
 # Configure logging
