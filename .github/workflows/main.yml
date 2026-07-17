@@ -19,20 +19,11 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: 3. Install NordVPN (Linux)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ca-certificates gnupg
-          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6A7D833C0115D9E8FF4A3B3B24C03F9A10E5D8A
-          sudo sh -c 'echo "deb http://repo.nordvpn.com/deb stable main" > /etc/apt/sources.list.d/nordvpn.list'
-          sudo apt-get update
-          sudo apt-get install -y nordvpn
-
-      - name: 4. Install Python Dependencies
+      - name: 3. Install Python Dependencies
         run: |
           pip install -r requirements.txt
 
-      - name: 5. Create .env and Credentials Folder
+      - name: 4. Create .env and Credentials Folder
         env:
           # Yahan GitHub Secrets ka data aa kar local files mein convert hoga
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -69,5 +60,5 @@ jobs:
           echo "$FB_API_DATA" > "credentials/facebook page api.txt"
           echo "$YOUTUBE_CREDS" > "credentials/youtube_creds.json"
 
-      - name: 6. Run Automation Script
+      - name: 5. Run Automation Script
         run: python main.py
