@@ -6,7 +6,7 @@ Handles video uploads, image uploads, and scheduling for Pages.
 import os
 import logging
 import requests
-from typing import Optional, Dict, Tuple
+from typing import Optional, Tuple
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +22,7 @@ class FacebookManager:
         self.page_token = token
         self.page_id = page_id
 
-    def _make_api_call(self, url: str, payload: dict = None, method: str = "POST", files: dict = None) -> Optional[Dict]:
+    def _make_api_call(self, url: str, payload: dict = None, method: str = "POST", files: dict = None) -> Optional[dict]:
         """Generic wrapper for FB API calls."""
         if not self.page_token:
             logger.error("Facebook token not set.")
@@ -49,7 +49,7 @@ class FacebookManager:
             logger.error(f"FB Network Error: {e}")
             return None
 
-    def upload_video(self, file_path: str, title: str, description: str, schedule_time: str) -> Optional[Tuple[str, str]]:
+    def upload_video(self, file_path: str, title: str, description: str, schedule_time: str) -> Optional[tuple[str, str]]:
         """
         Uploads video to page, optionally schedules it.
         Returns Tuple (Video_ID, Video_URL) or None.
@@ -83,7 +83,7 @@ class FacebookManager:
             logger.error(f"Failed to upload to Facebook: {str(e)}")
             return None
 
-    def upload_image(self, file_path: str, caption: str, schedule_time: str = None) -> Optional[Tuple[str, str]]:
+    def upload_image(self, file_path: str, caption: str, schedule_time: str = None) -> Optional[tuple[str, str]]:
         """
         Uploads image to page. If scheduled, creates an unpublished post and schedules it.
         FB image scheduling requires a two-step process: upload unpublished, then schedule post.
