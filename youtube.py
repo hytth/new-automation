@@ -5,7 +5,7 @@ Handles video uploading, and scheduling.
 
 import os
 import logging
-from typing import Optional, Dict
+from typing import Optional
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from googleapiclient.errors import HttpError
